@@ -1,6 +1,14 @@
+local ch = locale == "zh" or locale == "zhr"
 -- This information tells other players more about the mod
 name = "Modpacks"
-description = ""
+description = ch and 
+[[
+	描述123
+]]
+or 
+[[
+	description
+]]
 author = "Niko"
 version = "1.0" -- This is the version of the template. Change it to your own number.
 
@@ -31,4 +39,16 @@ icon = "modicon.tex"
 -- The mod's tags displayed on the server list
 server_filter_tags = {}
 
---configuration_options = {}
+configuration_options = {
+    {
+		name = "language",
+		label = ch and "选择语言" or "select language",
+		options =
+		{
+			{description = ch and "中文" or "CN", data = "ch"},
+			{description = ch and "英文" or "EN", data = "en"}
+		},
+		default = "ch"
+    }
+
+}

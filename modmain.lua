@@ -18,3 +18,6 @@ modimport("scripts/modpackindex")
 modimport("scripts/modsscreen")
 modimport("scripts/modstab")
 
+local language = GetModConfigData("language")
+local isCh = language == "ch"
+modimport(isCh and "utils/strings_ch.lua" or "utils/strings_eng.lua")
