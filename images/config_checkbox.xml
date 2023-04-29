@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Atlas>
+    <Texture filename="config_checkbox.tex"/>
+    <Elements>
+        <Element name="config_checkbox_focus.tex" u1="0" u2="0.476563" v1="0.523438" v2="0.992188"/>
+        <Element name="config_checkbox_focus_check.tex" u1="0.492188" u2="0.96875" v1="0.523438" v2="0.992188"/>
+        <Element name="config_checkbox_normal.tex" u1="0" u2="0.476563" v1="0.0390625" v2="0.507813"/>
+        <Element name="config_checkbox_normal_check.tex" u1="0.492188" u2="0.96875" v1="0.0390625" v2="0.507813"/>
+    </Elements>
+    <StraightAlpha>false</StraightAlpha>
+</Atlas>
+
