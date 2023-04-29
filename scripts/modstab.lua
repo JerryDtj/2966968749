@@ -94,8 +94,8 @@ local function ModsTabPostInit(self)
 
 
 	-- Page setup
-	local label = "Modpacks jerry1"
-	local tooltip = "Enable mods in bulk to easily switch between play styles jerry2"
+	local label = "Modpacks"
+	local tooltip = "Enable mods in bulk to easily switch between play styles"
 	local button = self.subscreener:MenuButton(label, "modpacks", tooltip, self.tooltip)
 	self.subscreener.menu:AddCustomItem(button)
 	self.subscreener.sub_screens.modpacks = self.mods_page
