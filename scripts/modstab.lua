@@ -803,7 +803,7 @@ local function ModsTabPostInit(self)
 					no_mods =  "test_no_mods"
 					self.modlinkbutton:Select()
 				else
-					no_mods = "You have no modpacks, Create a new modpack using the \"Create New Modpack\" button below."
+					no_mods = STRINGS.NAMES.NO_MODS_CONTENT_WARING
 				end
 	
 				self.detaildesc_empty:SetString(no_mods)

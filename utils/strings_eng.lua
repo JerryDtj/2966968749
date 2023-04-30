@@ -11,6 +11,7 @@ STRINGS.NAMES.UPDATE_IMAGE_BUTTON = "Change Image"
 
 -- waring
 STRINGS.NAMES.NO_MODS_WARING = "This pack has no mods"
+STRINGS.NAMES.NO_MODS_CONTENT_WARING = "You have no modpacks, Create a new modpack using the \"Create New Modpack\" button below."
 STRINGS.NAMES.NO_MODS_ENABLE_WARING = "No mods in this pack are enabled"
 STRINGS.NAMES.SOME_MODS_ENABLE_WARING = "Some mods in this pack are enabled"
 STRINGS.NAMES.ALL_MODS_ENABLE_WARING = "All mods in this pack are enabled"
