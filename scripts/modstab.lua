@@ -131,9 +131,9 @@ local function ModsTabPostInit(self)
 		local modname = self.settings.is_configuring_server and self.servermodpacknames[idx].modname or self.clientmodpacknames[idx].modname
 		local fancyname = KnownModIndex:GetModpackFancyName(modname)
 		TheFrontEnd:PushScreen(PopupDialogScreen(
-			"Enable only "..fancyname.."?", "This will disable all your mods except the ones in this modpack", 
+			STRINGS.NAMES.DISABLE_MOD_PACK..fancyname.."?", STRINGS.NAMES.DISABLE_MOD_PACK_CONTENT, 
 			{
-				{text="Enable", cb = function() 
+				{text=STRINGS.NAMES.CONFRIM_BUTTON, cb = function() 
 					KnownModIndex:ModpackEnableOnly(modname, not self.settings.is_configuring_server) 
 					self.mods_scroll_list:RefreshView() 
 					if self.servercreationscreen.DirtyFromMods then
@@ -236,27 +236,27 @@ local function ModsTabPostInit(self)
 		local modpackname = self.currentmodname
 		local fancyname = KnownModIndex:GetModpackFancyName(modpackname)
 		TheFrontEnd:PushScreen(PopupDialogScreen(
-			"Delete "..fancyname.."?", "Deleting this modpack will remove it permanently and can not be undone!", 
+			STRINGS.NAMES.DELETE_MOD_PACK..fancyname.."?", STRINGS.NAMES.DELETEE_MOD_PACK_CONTENT, 
 			{
-				{text="Delete", cb = function() KnownModIndex:ModpackDelete(modpackname) self.modfilterbar.cachedmodnames[modpackname] = nil TheFrontEnd:PopScreen() end },
+				{text=STRINGS.NAMES.CONFRIM_BUTTON, cb = function() KnownModIndex:ModpackDelete(modpackname) self.modfilterbar.cachedmodnames[modpackname] = nil TheFrontEnd:PopScreen() end },
 				{text=STRINGS.UI.MODSSCREEN.CANCEL, cb = function() TheFrontEnd:PopScreen() end}
 			}
 		))
 	end
-	self.modpackdeletebutton = TEMPLATES.IconButton("images/button_icons.xml", "delete.tex", "Delete Modpack", false, false, function() ModpackRemove() end, hovertext_top)
+	self.modpackdeletebutton = TEMPLATES.IconButton("images/button_icons.xml", "delete.tex", STRINGS.NAMES.DELETE_PACK_BUTTON, false, false, function() ModpackRemove() end, hovertext_top)
 	local ModpackSyncMods = function()
 		local modpackname = self.currentmodname
 		local fancyname = KnownModIndex:GetModpackFancyName(modpackname)
 		local is_client = not self.settings.is_configuring_server
 		TheFrontEnd:PushScreen(PopupDialogScreen(
-			"Update "..fancyname.."?", "Updating this modpack will sync it with the currently enabled mods and configs and can not be reverted!", 
+			STRINGS.NAMES.UPDATE_MOD_PACK..fancyname.."?", STRINGS.NAMES.UPDATE_MOD_PACK_CONTENT, 
 			{
-				{text="Update", cb = function() KnownModIndex:ModpackUpdate(modpackname, is_client) self.modfilterbar.cachedmodnames[modpackname] = nil TheFrontEnd:PopScreen() end },
+				{text=STRINGS.NAMES.CONFRIM_BUTTON, cb = function() KnownModIndex:ModpackUpdate(modpackname, is_client) self.modfilterbar.cachedmodnames[modpackname] = nil TheFrontEnd:PopScreen() end },
 				{text=STRINGS.UI.MODSSCREEN.CANCEL, cb = function() TheFrontEnd:PopScreen() end}
 			}
 		))
 	end
-	self.modpacksyncbutton = TEMPLATES.IconButton("images/button_icons.xml", "undo.tex", "Update Modpack", false, false, function() ModpackSyncMods() end, hovertext_top)
+	self.modpacksyncbutton = TEMPLATES.IconButton("images/button_icons.xml", "undo.tex", STRINGS.NAMES.UPDATE_PACK_BUTTON, false, false, function() ModpackSyncMods() end, hovertext_top)
 	local ModpackViewMods = function()
 		local modpackname = self.currentmodname
 		local mods_list = {}
@@ -282,7 +282,7 @@ local function ModsTabPostInit(self)
 
 		TheFrontEnd:PushScreen(TextListPopup(mods_list, STRINGS.UI.SERVERLISTINGSCREEN.MODSTITLE))
 	end
-	self.modpackviewbutton = TEMPLATES.IconButton("images/button_icons.xml", "owned_filter_on.tex", STRINGS.NAMES.VIEW_PACK, false, false, function() ModpackViewMods() end, hovertext_top)
+	self.modpackviewbutton = TEMPLATES.IconButton("images/button_icons.xml", "owned_filter_on.tex", STRINGS.NAMES.VIEW_PACK_BUTTON, false, false, function() ModpackViewMods() end, hovertext_top)
 
 	self.modpack_selectedmodmenu = self.mods_page:AddChild(Menu({
 		{ widget = self.modpackdeletebutton, },
@@ -297,8 +297,8 @@ local function ModsTabPostInit(self)
 		TheFrontEnd:PushScreen(
 			NameModpackScreen(
 				nil,
-				"Please name this modpack",
-				"Confirm",
+				STRINGS.NAMES.CREATE_PACK_WINDOW_TITLE,
+				STRINGS.NAMES.CONFRIM_BUTTON,
 				function(name, description) -- OnConfirm
 					return KnownModIndex:ModpackCreate(nil, name, description, nil, nil, nil, is_client, nil)
 				end,
@@ -307,8 +307,8 @@ local function ModsTabPostInit(self)
 			)
 		)
 	end
-	self.modpackcreatebutton = TEMPLATES.IconButton("images/create.xml", "create.tex", STRINGS.NAMES.CREATE_PACK, false, false, function() self:ModpackCreateNew() end, hovertext_top)
-	self.modpacknilbutton = TEMPLATES.IconButton("images/create.xml", "create.tex", STRINGS.NAMES.VIEW_PACK, false, false, function() end, hovertext_top)
+	self.modpackcreatebutton = TEMPLATES.IconButton("images/create.xml", "create.tex", STRINGS.NAMES.CREATE_PACK_BUTTON, false, false, function() self:ModpackCreateNew() end, hovertext_top)
+	self.modpacknilbutton = TEMPLATES.IconButton("images/create.xml", "create.tex", STRINGS.NAMES.VIEW_PACK_BUTTON, false, false, function() end, hovertext_top)
 	self.modpacknilbutton:Hide()
 
 	self.allmodpacksmenu = self.mods_page:AddChild(Menu({
@@ -387,9 +387,9 @@ local function ModsTabPostInit(self)
 	self.ShowModDetails = function(self, widget_idx, client_mod)
 		if self.detailimage.changeimagebutton == nil then
 			self.detailimage.changeimagebutton = self.detailimage:AddChild(TEMPLATES.IconButton(
-				"images/button_icons.xml", 
-				"sweep.tex", 
-				"Change Image", 
+				"images/edit.xml", 
+				"edit.tex", 
+				STRINGS.NAMES.UPDATE_IMAGE_BUTTON, 
 				false, 
 				false, 
 				function() ModpackChangeImage() end, 
@@ -461,19 +461,19 @@ local function ModsTabPostInit(self)
 				if extra then
 					if extra == "EMPTY" then
 						self.detailwarning:SetColour(242/255, 99/255, 99/255, 1)
-						self.detailwarning:SetString("This pack has no mods")
+						self.detailwarning:SetString(STRINGS.NAMES.NO_MODS_WARING)
 					else
 						self.detailwarning:SetColour(.6,.6,.6,1)
-						self.detailwarning:SetString("Some mods in this pack are enabled")
+						self.detailwarning:SetString(STRINGS.NAMES.SOME_MODS_ENABLE_WARING)
 					end
 				elseif modStatus == "WORKING_NORMALLY" then
-					self.detailwarning:SetString("All mods in this pack are enabled")
+					self.detailwarning:SetString(STRINGS.NAMES.ALL_MODS_ENABLE_WARING)
 					self.detailwarning:SetColour(59/255, 222/255, 99/255, 1)
 				-- elseif modStatus == "DISABLED_ERROR" then
 				-- 	self.detailwarning:SetColour(242/255, 99/255, 99/255, 1) --(242/255, 99/255, 99/255, 1)--0.9,0.3,0.3,1)
 				-- 	self.detailwarning:SetString(STRINGS.UI.MODSSCREEN.DISABLED_ERROR)
 				elseif modStatus == "DISABLED_MANUAL" then
-					self.detailwarning:SetString("No mods in this pack are enabled")
+					self.detailwarning:SetString(STRINGS.NAMES.NO_MODS_ENABLE_WARING)
 					self.detailwarning:SetColour(.6,.6,.6,1)
 				end
 			else

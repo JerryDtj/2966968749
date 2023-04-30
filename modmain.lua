@@ -7,6 +7,9 @@ Assets = {
     Asset("ATLAS", "images/create.xml"), 
     Asset("IMAGE", "images/create.tex"), 
 
+    Asset("ATLAS", "images/edit.xml"), 
+    Asset("IMAGE", "images/edit.tex"), 
+
     -- Asset("ATLAS", "images/config_checkbox_normal_check.xml"), 
     -- Asset("IMAGE", "images/config_checkbox_normal_check.tex"), 
 

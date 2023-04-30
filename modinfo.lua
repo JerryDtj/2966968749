@@ -3,14 +3,14 @@ local ch = locale == "zh" or locale == "zhr"
 name = ch and "模组合集" or "Modpacks"
 description = ch and 
 [[
-	描述123
+	
 ]]
 or 
 [[
-	description
+	
 ]]
-author = "Niko"
-version = "1.0" -- This is the version of the template. Change it to your own number.
+author = "Niko and Jerry"
+version = "1.1" -- This is the version of the template. Change it to your own number.
 
 -- This is the URL name of the mod's thread on the forum; the part after the ? and before the first & in the url
 -- forumthread = ""

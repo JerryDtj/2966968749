@@ -60,7 +60,7 @@ function NameModpackScreen:SaveModpack()
 
     if not name or #name:gsub("%s", "") == 0 then
         TheFrontEnd:PushScreen(
-            PopupDialogScreen("Missing modpack name", "Seems you forgot to name your new modpack.",
+            PopupDialogScreen(STRINGS.NAMES.CREATE_PACK_MISS_NAME_WINDOW_TITLE, STRINGS.NAMES.CREATE_PACK_MISS_NAME_WINDOW_CONTENT,
             {
                 {
                     text = math.random() < 0.01 and "Oopsie, woopsie" or STRINGS.UI.CUSTOMIZATIONSCREEN.BACK,
@@ -77,7 +77,7 @@ function NameModpackScreen:SaveModpack()
 
     if self.onconfirmfn(name, desc) == false then
         TheFrontEnd:PushScreen(
-            PopupDialogScreen("Name taken", "A modpack with the same or similar name already exists! Please pick a new one.",
+            PopupDialogScreen(STRINGS.NAMES.CREATE_PACK_REPEAT_NAME_WINDOW_TITLE, STRINGS.NAMES.CREATE_PACK_REPEAT_NAME_WINDOW_CONTENT,
             {
                 {
                     text = STRINGS.UI.CUSTOMIZATIONSCREEN.BACK,

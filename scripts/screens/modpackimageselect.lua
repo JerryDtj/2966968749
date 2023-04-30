@@ -51,7 +51,7 @@ local ModpackImageSelect = Class(Screen, function(self, modpackname, items, titl
     self.tint = self.root:AddChild(TEMPLATES.BackgroundTint(0.7))
 
     --throw up the background
-    self.bg = self.root:AddChild(TEMPLATES.CurlyWindow(500, 400, "Select New Icon"))
+    self.bg = self.root:AddChild(TEMPLATES.CurlyWindow(500, 400, STRINGS.NAMES.UPDATE_PACK_IMAGE_TITLE))
     -- self.bg.fill = self.proot:AddChild(Image("images/fepanel_fills.xml", "panel_fill_tall.tex"))
     -- self.bg.fill:SetScale(.47, -.495)
     -- self.bg.fill:SetPosition(8, 10)
