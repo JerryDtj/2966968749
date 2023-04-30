@@ -94,8 +94,8 @@ local function ModsTabPostInit(self)
 
 
 	-- Page setup
-	local label = "Modpacks"
-	local tooltip = "Enable mods in bulk to easily switch between play styles"
+	local label = STRINGS.NAMES.TAB_LABEL
+	local tooltip = STRINGS.NAMES.TAB_LABEL_DESC
 	local button = self.subscreener:MenuButton(label, "modpacks", tooltip, self.tooltip)
 	self.subscreener.menu:AddCustomItem(button)
 	self.subscreener.sub_screens.modpacks = self.mods_page
@@ -282,7 +282,7 @@ local function ModsTabPostInit(self)
 
 		TheFrontEnd:PushScreen(TextListPopup(mods_list, STRINGS.UI.SERVERLISTINGSCREEN.MODSTITLE))
 	end
-	self.modpackviewbutton = TEMPLATES.IconButton("images/button_icons.xml", "owned_filter_on.tex", "View mods", false, false, function() ModpackViewMods() end, hovertext_top)
+	self.modpackviewbutton = TEMPLATES.IconButton("images/button_icons.xml", "owned_filter_on.tex", STRINGS.NAMES.VIEW_PACK, false, false, function() ModpackViewMods() end, hovertext_top)
 
 	self.modpack_selectedmodmenu = self.mods_page:AddChild(Menu({
 		{ widget = self.modpackdeletebutton, },
@@ -307,8 +307,8 @@ local function ModsTabPostInit(self)
 			)
 		)
 	end
-	self.modpackcreatebutton = TEMPLATES.IconButton("images/button_icons.xml", "save.tex", "Create New Modpack", false, false, function() self:ModpackCreateNew() end, hovertext_top)
-	self.modpacknilbutton = TEMPLATES.IconButton("images/button_icons.xml", "save.tex", "View mods", false, false, function() end, hovertext_top)
+	self.modpackcreatebutton = TEMPLATES.IconButton("images/create.xml", "create.tex", STRINGS.NAMES.CREATE_PACK, false, false, function() self:ModpackCreateNew() end, hovertext_top)
+	self.modpacknilbutton = TEMPLATES.IconButton("images/create.xml", "create.tex", STRINGS.NAMES.VIEW_PACK, false, false, function() end, hovertext_top)
 	self.modpacknilbutton:Hide()
 
 	self.allmodpacksmenu = self.mods_page:AddChild(Menu({

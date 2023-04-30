@@ -1,6 +1,6 @@
 local ch = locale == "zh" or locale == "zhr"
 -- This information tells other players more about the mod
-name = "Modpacks"
+name = ch and "模组合集" or "Modpacks"
 description = ch and 
 [[
 	描述123

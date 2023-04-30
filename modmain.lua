@@ -1,6 +1,11 @@
+GLOBAL.setmetatable(env,{__index=function(t,k) return GLOBAL.rawget(GLOBAL,k) end})
+
 Assets = { 
     Asset("ATLAS", "images/config_checkbox.xml"), 
     Asset("IMAGE", "images/config_checkbox.tex"), 
+
+    Asset("ATLAS", "images/create.xml"), 
+    Asset("IMAGE", "images/create.tex"), 
 
     -- Asset("ATLAS", "images/config_checkbox_normal_check.xml"), 
     -- Asset("IMAGE", "images/config_checkbox_normal_check.tex"), 
