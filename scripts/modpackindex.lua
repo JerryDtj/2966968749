@@ -227,6 +227,25 @@ KnownModIndex.GetModpackNamesTable = function(self, is_client)
 	return names
 end
 
+-- When the user changes settings it messes directly with the index data, so make a backup
+local CacheSaveData = KnownModIndex.CacheSaveData
+KnownModIndex.CacheSaveData = function(self)
+	CacheSaveData(self)
+	self.cached_data.modpacks = deepcopy(self.modpacks)
+	return self.cached_data
+end
+
+-- If the user cancels their mod changes, restore the index to how it was prior the changes.
+local RestoreCachedSaveData = KnownModIndex.RestoreCachedSaveData
+KnownModIndex.RestoreCachedSaveData = function(self, ext_data)
+	RestoreCachedSaveData(self, ext_data)
+	if ext_data and ext_data.modpacks then
+		self.modpacks = ext_data.modpacks
+	elseif self.cached_data and self.cached_data.modpacks then
+		self.modpacks = self.cached_data.modpacks
+	end
+end
+
 local _Save = KnownModIndex.Save --Taken from MIM and tweaked for modpacks
 KnownModIndex.Save = function(self, callback)
 	local data = DataDumper({modpacks = self.modpacks}, nil, true)

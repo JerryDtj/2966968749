@@ -1,5 +1,3 @@
-GLOBAL.setmetatable(env,{__index=function(t,k) return GLOBAL.rawget(GLOBAL,k) end})
-
 Assets = { 
     Asset("ATLAS", "images/config_checkbox.xml"), 
     Asset("IMAGE", "images/config_checkbox.tex"), 
@@ -20,12 +18,18 @@ Assets = {
     -- Asset("IMAGE", "images/config_checkbox_focus_check.tex"), 
 }
 
+local userlang = GLOBAL.Profile:GetLanguageID()
+local modlanguage = GetModConfigData("language")
+local isCh
+if modlanguage == "auto" then
+    isCh = userlang == GLOBAL.LANGUAGE.CHINESE_T or userlang == GLOBAL.LANGUAGE.CHINESE_S
+else
+    isCh = modlanguage == "ch"
+end
+modimport(isCh and "utils/strings_ch.lua" or "utils/strings_eng.lua")
+
 -- modimport("scripts/modpackversionupgrades")
 modimport("scripts/servercreationscreen")
 modimport("scripts/modpackindex")
 modimport("scripts/modsscreen")
 modimport("scripts/modstab")
-
-local language = GetModConfigData("language")
-local isCh = language == "ch"
-modimport(isCh and "utils/strings_ch.lua" or "utils/strings_eng.lua")

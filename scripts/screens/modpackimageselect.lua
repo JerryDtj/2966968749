@@ -28,6 +28,7 @@ local ModpackImageSelect = Class(Screen, function(self, modpackname, items, titl
         local modinfo = KnownModIndex:GetModInfo(self.focused.modname)
         KnownModIndex:ModpackChangeImage(self.modpackname, modinfo.icon_atlas, modinfo.icon)
         TheFrontEnd:GetSound():PlaySound("dontstarve/common/together/reskin_tool")
+        self.onconfirmfn()
         self.Close()
     end
 
