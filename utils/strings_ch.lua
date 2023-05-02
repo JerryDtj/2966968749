@@ -1,3 +1,6 @@
+local env = env
+GLOBAL.setfenv(1, GLOBAL) -- Moves us from modding env to global env, keeping the mod env handy in case we need it.
+
 -- lable
 STRINGS.NAMES.TAB_LABEL = "模组合集"
 STRINGS.NAMES.TAB_LABEL_DESC = "批量启用MOD，轻松切换游戏风格"
@@ -9,7 +12,7 @@ STRINGS.NAMES.UPDATE_PACK_BUTTON = "修改mod合集"
 STRINGS.NAMES.DELETE_PACK_BUTTON = "删除mod合集"
 STRINGS.NAMES.UPDATE_IMAGE_BUTTON = "更新图片"
 
--- waring
+-- warning
 STRINGS.NAMES.NO_MODS_WARING = "这个合集中没有mod"
 STRINGS.NAMES.NO_MODS_CONTENT_WARING = "你还没有mod合集，点击下面的加号去创建一个"
 STRINGS.NAMES.NO_MODS_ENABLE_WARING = "这个合集中没有mod被启用"

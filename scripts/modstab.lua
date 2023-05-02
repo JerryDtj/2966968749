@@ -150,6 +150,9 @@ local function ModsTabPostInit(self)
 		local idx = items_table[widget_idx].index
 		local modname = self.settings.is_configuring_server and self.servermodpacknames[idx].modname or self.clientmodpacknames[idx].modname
 		local suc KnownModIndex:ModpackSetAllowConfig(modname)
+		if self.servercreationscreen.DirtyFromMods then
+			self.servercreationscreen:DirtyFromMods(self.slotnum)
+		end
 		self.mods_scroll_list:RefreshView()
 		return suc
 	end
@@ -238,7 +241,14 @@ local function ModsTabPostInit(self)
 		TheFrontEnd:PushScreen(PopupDialogScreen(
 			STRINGS.NAMES.DELETE_MOD_PACK..fancyname.."?", STRINGS.NAMES.DELETEE_MOD_PACK_CONTENT, 
 			{
-				{text=STRINGS.NAMES.CONFRIM_BUTTON, cb = function() KnownModIndex:ModpackDelete(modpackname) self.modfilterbar.cachedmodnames[modpackname] = nil TheFrontEnd:PopScreen() end },
+				{text=STRINGS.NAMES.CONFRIM_BUTTON, cb = function() 
+					KnownModIndex:ModpackDelete(modpackname) 
+					self.modfilterbar.cachedmodnames[modpackname] = nil 
+					if self.servercreationscreen.DirtyFromMods then
+						self.servercreationscreen:DirtyFromMods(self.slotnum)
+					end
+					TheFrontEnd:PopScreen()
+				end},
 				{text=STRINGS.UI.MODSSCREEN.CANCEL, cb = function() TheFrontEnd:PopScreen() end}
 			}
 		))
@@ -251,7 +261,14 @@ local function ModsTabPostInit(self)
 		TheFrontEnd:PushScreen(PopupDialogScreen(
 			STRINGS.NAMES.UPDATE_MOD_PACK..fancyname.."?", STRINGS.NAMES.UPDATE_MOD_PACK_CONTENT, 
 			{
-				{text=STRINGS.NAMES.CONFRIM_BUTTON, cb = function() KnownModIndex:ModpackUpdate(modpackname, is_client) self.modfilterbar.cachedmodnames[modpackname] = nil TheFrontEnd:PopScreen() end },
+				{text=STRINGS.NAMES.CONFRIM_BUTTON, cb = function() 
+					KnownModIndex:ModpackUpdate(modpackname, is_client) 
+					self.modfilterbar.cachedmodnames[modpackname] = nil 
+					if self.servercreationscreen.DirtyFromMods then
+						self.servercreationscreen:DirtyFromMods(self.slotnum)
+					end
+					TheFrontEnd:PopScreen() 
+				end},
 				{text=STRINGS.UI.MODSSCREEN.CANCEL, cb = function() TheFrontEnd:PopScreen() end}
 			}
 		))
@@ -300,6 +317,9 @@ local function ModsTabPostInit(self)
 				STRINGS.NAMES.CREATE_PACK_WINDOW_TITLE,
 				STRINGS.NAMES.CONFRIM_BUTTON,
 				function(name, description) -- OnConfirm
+					if self.servercreationscreen.DirtyFromMods then
+						self.servercreationscreen:DirtyFromMods(self.slotnum)
+					end
 					return KnownModIndex:ModpackCreate(nil, name, description, nil, nil, nil, is_client, nil)
 				end,
 				"",-- Filler default name
@@ -377,7 +397,12 @@ local function ModsTabPostInit(self)
 				modpackname,
 				KnownModIndex:GetModNames(),
 				"",
-				function() return end,
+				function() 
+					if self.servercreationscreen.DirtyFromMods then
+						self.servercreationscreen:DirtyFromMods(self.slotnum)
+					end 
+					return 
+				end,
 				nil
 			)
 		)

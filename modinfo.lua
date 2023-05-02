@@ -7,7 +7,7 @@ description = ch and
 ]]
 or 
 [[
-	
+Lets you enable/disable mods in bulk, with or without changing their configs!
 ]]
 author = "Niko and Jerry"
 version = "1.1" -- This is the version of the template. Change it to your own number.
@@ -44,11 +44,12 @@ configuration_options = {
 		name = "language",
 		label = ch and "选择语言" or "select language",
 		options =
-		{
+		{                    --Needs Translation
+			{description = ch and "" or "Auto-Detect", data = "auto"},
 			{description = ch and "中文" or "CN", data = "ch"},
 			{description = ch and "英文" or "EN", data = "en"}
 		},
-		default = "ch"
+		default = "auto"
     }
 
 }
